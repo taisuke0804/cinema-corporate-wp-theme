@@ -1,0 +1,131 @@
+/*
+Theme Name: Cinema-Corporate
+Author: taisuke0804
+Author URI: https://github.com/taisuke0804
+Description: CINEMA-HOUSEの世界観を踏襲した中小企業向けコーポレートWordPressテーマ
+Version: 1.0
+*/
+
+.service-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 24px;
+  padding: 0;
+  list-style: none;
+}
+
+.service-item {
+  border: 1px solid #ddd;
+  padding: 24px;
+  background: #fff;
+}
+
+.service-item h3 {
+  margin-top: 0;
+  color: #e60012;
+}
+
+.service-single {
+  padding: 80px 24px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.service-detail h1 {
+  color: #e60012;
+  margin-bottom: 24px;
+}
+
+.service-archive {
+  padding: 80px 24px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.service-archive-list {
+  list-style: none;
+  padding: 0;
+}
+
+.service-archive-item {
+  margin-bottom: 48px;
+}
+
+.service-archive-item h2 a {
+  color: #e60012;
+  text-decoration: none;
+}
+
+.breadcrumb {
+  font-size: 14px;
+  margin: 16px 0 32px;
+}
+
+.breadcrumb a {
+  color: #666;
+  text-decoration: none;
+}
+
+.breadcrumb a:hover {
+  text-decoration: underline;
+}
+
+/* =========================
+   Global Navigation
+========================= */
+
+.site-header {
+  border-bottom: 1px solid #ddd;
+}
+
+.header-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 16px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.site-title a {
+  font-size: 24px;
+  font-weight: bold;
+  color: #000;
+  text-decoration: none;
+}
+
+.global-nav-list {
+  display: flex;
+  gap: 24px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.global-nav-list a {
+  color: #333;
+  text-decoration: none;
+}
+
+.global-nav-list a:hover {
+  color: #e60012;
+}
+
+.global-nav-list .current-menu-item > a {
+  border-bottom: 2px solid #e60012;
+  padding-bottom: 4px;
+}
+
+.global-nav-list .current-menu-item > a,
+.global-nav-list .current-menu-parent > a {
+  color: #e60012;
+  font-weight: bold;
+}
+
+.global-nav-list a:hover {
+  color: #e60012;
+}
+
+.global-nav-list .current-menu-item > a {
+  pointer-events: none;
+}
