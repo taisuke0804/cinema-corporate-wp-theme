@@ -129,3 +129,49 @@ Version: 1.0
 .global-nav-list .current-menu-item > a {
   pointer-events: none;
 }
+
+.contact-page .wpcf7-form {
+  max-width: 600px;
+  margin-top: 40px;
+}
+
+.contact-page label {
+  display: block;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.contact-page input[type="text"],
+.contact-page input[type="email"],
+.contact-page textarea {
+  width: 100%;
+  padding: 10px;
+  margin-top: 6px;
+  border: 1px solid #ccc;
+}
+
+.contact-page .wpcf7-submit {
+  margin-top: 20px;
+  padding: 12px 30px;
+  background: #000;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.required {
+  color: red;
+}
+
+.contact-page .wpcf7-response-output {
+  margin-top: 20px;
+  padding: 12px;
+  border-radius: 4px;
+}
+
+/* Contactページ全体のフォーム中央寄せ */
+.contact-page .wpcf7-form {
+  max-width: 600px;
+  margin: 40px auto 0;
+}
+
