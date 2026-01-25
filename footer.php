@@ -5,24 +5,18 @@
       <section class="footer-block" aria-label="フッター（左）">
         <?php if (is_active_sidebar('footer-1')) : ?>
           <?php dynamic_sidebar('footer-1'); ?>
-        <?php else : ?>
-          <p class="footer-note">フッター（左）ウィジェット未設定</p>
         <?php endif; ?>
       </section>
 
       <section class="footer-block" aria-label="フッター（中央）">
         <?php if (is_active_sidebar('footer-2')) : ?>
           <?php dynamic_sidebar('footer-2'); ?>
-        <?php else : ?>
-          <p class="footer-note">フッター（中央）ウィジェット未設定</p>
         <?php endif; ?>
       </section>
 
       <section class="footer-block" aria-label="フッター（右）">
         <?php if (is_active_sidebar('footer-3')) : ?>
           <?php dynamic_sidebar('footer-3'); ?>
-        <?php else : ?>
-          <p class="footer-note">フッター（右）ウィジェット未設定</p>
         <?php endif; ?>
       </section>
 
