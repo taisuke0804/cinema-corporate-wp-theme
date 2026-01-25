@@ -64,6 +64,41 @@ function cinema_corporate_breadcrumb() {
 function cinema_corporate_register_menus() {
   register_nav_menus([
     'global' => 'グローバルナビ',
+    'footer' => 'フッターメニュー',
   ]);
 }
 add_action('after_setup_theme', 'cinema_corporate_register_menus');
+
+// フッターウィジェット
+function cinema_corporate_register_sidebars() {
+  register_sidebar([
+    'name'          => 'フッター（左）',
+    'id'            => 'footer-1',
+    'description'   => 'フッター左カラム',
+    'before_widget' => '<div class="footer-widget">',
+    'after_widget'  => '</div>',
+    'before_title'  => '<h3 class="footer-title">',
+    'after_title'   => '</h3>',
+  ]);
+
+  register_sidebar([
+    'name'          => 'フッター（中央）',
+    'id'            => 'footer-2',
+    'description'   => 'フッター中央カラム',
+    'before_widget' => '<div class="footer-widget">',
+    'after_widget'  => '</div>',
+    'before_title'  => '<h3 class="footer-title">',
+    'after_title'   => '</h3>',
+  ]);
+
+  register_sidebar([
+    'name'          => 'フッター（右）',
+    'id'            => 'footer-3',
+    'description'   => 'フッター右カラム',
+    'before_widget' => '<div class="footer-widget">',
+    'after_widget'  => '</div>',
+    'before_title'  => '<h3 class="footer-title">',
+    'after_title'   => '</h3>',
+  ]);
+}
+add_action('widgets_init', 'cinema_corporate_register_sidebars');

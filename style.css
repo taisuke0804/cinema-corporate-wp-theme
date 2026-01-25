@@ -175,3 +175,96 @@ Version: 1.0
   margin: 40px auto 0;
 }
 
+/* =========================
+   Footer
+========================= */
+
+.site-footer {
+  margin-top: 64px;
+  padding: 48px 24px 24px;
+  background: #111;
+  color: #fff;
+}
+
+.footer-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* 3カラム（SPは縦積み） */
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+
+/* 各ブロック */
+.footer-block {
+  min-width: 0;
+}
+
+/* ウィジェットのタイトル（register_sidebar の before_title/after_title に合わせる） */
+.footer-title {
+  margin: 0 0 12px;
+  font-size: 14px;
+  font-weight: bold;
+  opacity: 0.9;
+}
+
+/* 会社情報などのテキスト */
+.footer-note,
+.site-footer p {
+  margin: 0 0 10px;
+  line-height: 1.7;
+  opacity: 0.85;
+}
+
+/* リンクの見た目（デフォルトの紫を抑制） */
+.site-footer a {
+  color: #fff;
+  text-decoration: none;
+  opacity: 0.9;
+}
+
+.site-footer a:hover,
+.site-footer a:focus-visible {
+  text-decoration: underline;
+  opacity: 1;
+}
+
+/* リスト（ナビゲーションの●を消して縦並びに） */
+.site-footer ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.site-footer li {
+  margin: 0 0 10px;
+}
+
+/* コピーライト帯 */
+.footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  margin-top: 28px;
+  padding-top: 16px;
+  text-align: center;
+  opacity: 0.8;
+}
+
+.footer-copyright {
+  margin: 0;
+  font-size: 13px;
+}
+
+/* 画面幅が狭い場合は縦積み */
+@media (max-width: 768px) {
+  .site-footer {
+    padding: 40px 16px 20px;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
