@@ -1,6 +1,6 @@
 <?php get_header(); ?>
 
-<main class="front-page">
+<main class="front-page" id="main">
   <section class="hero">
     <h1>Cinema-Corporate</h1>
     <p>映像 × テクノロジーで価値を創造する</p>
