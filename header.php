@@ -6,20 +6,26 @@
   <?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?>>
-<header>
+<?php wp_body_open(); // body直後にフックを提供 ?>
+
+<!-- スキップリンク -->
+<a class="skip-link screen-reader-text" href="#main">本文へスキップ</a>
+
+<header class="site-header">
   <div class="header-inner">
-    <h1 class="site-title">
-      <a href="<?php echo home_url('/'); ?>">
+    <p class="site-title">
+      <a href="<?php echo esc_url(home_url('/')); ?>" aria-label="ホームへ">
         <?php bloginfo('name'); ?>
       </a>
-    </h1>
+    </p>
 
-    <nav class="global-nav">
+    <nav class="global-nav" aria-label="グローバルナビゲーション">
       <?php
       wp_nav_menu([
         'theme_location' => 'global',
-        'container' => false,
-        'menu_class' => 'global-nav-list',
+        'container'      => false,
+        'menu_class'     => 'global-nav-list',
+        'fallback_cb'    => false,
       ]);
       ?>
     </nav>
