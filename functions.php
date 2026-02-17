@@ -136,20 +136,14 @@ function cinema_ogp_tags() {
 }
 add_action('wp_head', 'cinema_ogp_tags');
 
-// canonical（正規URL）
-function cinema_canonical_tag() {
-  // 個別ページ（投稿 / 固定 / カスタム投稿）で canonical を出す
-  if (is_singular()) {
-    echo '<link rel="canonical" href="' . esc_url(get_permalink()) . '">' . "\n";
-    return;
-  }
-
-  // トップページにも canonical を出す（任意だが推奨）
+// canonical（トップページのみ補完）
+function cinema_front_canonical_tag() {
   if (is_front_page()) {
     echo '<link rel="canonical" href="' . esc_url(home_url('/')) . '">' . "\n";
   }
 }
-add_action('wp_head', 'cinema_canonical_tag', 5);
+add_action('wp_head', 'cinema_front_canonical_tag', 5);
+
 
 // noindex 制御（検索エンジン除外）
 function cinema_noindex_control() {
