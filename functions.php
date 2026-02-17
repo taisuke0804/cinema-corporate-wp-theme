@@ -150,3 +150,26 @@ function cinema_canonical_tag() {
   }
 }
 add_action('wp_head', 'cinema_canonical_tag', 5);
+
+// noindex 制御（検索エンジン除外）
+function cinema_noindex_control() {
+  // noindex → インデックスしない nofollow → リンク評価も渡さない
+  // サンクスページ（例）
+  if (is_page('thanks')) {
+    echo '<meta name="robots" content="noindex, nofollow">' . "\n";
+    return;
+  }
+
+  // 検索結果ページは基本 noindex 推奨
+  if (is_search()) {
+    echo '<meta name="robots" content="noindex, follow">' . "\n";
+    return;
+  }
+
+  // 404ページはインデックス不要
+  if (is_404()) {
+    echo '<meta name="robots" content="noindex, nofollow">' . "\n";
+    return;
+  }
+}
+add_action('wp_head', 'cinema_noindex_control', 5);
