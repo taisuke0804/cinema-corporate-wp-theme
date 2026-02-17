@@ -102,3 +102,51 @@ function cinema_corporate_register_sidebars() {
   ]);
 }
 add_action('widgets_init', 'cinema_corporate_register_sidebars');
+
+// meta description の動的出力
+function cinema_meta_description() {
+    if (is_front_page()) {
+        echo '<meta name="description" content="中小企業向けコーポレートサイトを想定したWordPressオリジナルテーマです。">';
+    } elseif (is_singular()) {
+        global $post;
+        // wp_strip_all_tags 文字列からHTMLタグを取り除く
+        $excerpt = wp_strip_all_tags(get_the_excerpt($post));
+        echo '<meta name="description" content="' . esc_attr($excerpt) . '">';
+    }
+}
+add_action('wp_head', 'cinema_meta_description');
+
+// OGP（SNS共有対策）
+function cinema_ogp_tags() {
+  if (is_singular()) {
+      global $post;
+
+      // image（アイキャッチ優先、なければデフォルト画像）
+      $image = get_the_post_thumbnail_url($post, 'full');
+      if (!$image) {
+          $image = get_template_directory_uri() . '/assets/images/ogp-default.jpg';
+      }
+
+      echo '<meta property="og:title" content="' . esc_attr(get_the_title()) . '">';
+      echo '<meta property="og:description" content="' . esc_attr(get_the_excerpt()) . '">';
+      echo '<meta property="og:image" content="' . esc_url($image) . '">';
+      echo '<meta property="og:type" content="article">';
+      echo '<meta property="og:url" content="' . esc_url(get_permalink()) . '">';
+  }
+}
+add_action('wp_head', 'cinema_ogp_tags');
+
+// canonical（正規URL）
+function cinema_canonical_tag() {
+  // 個別ページ（投稿 / 固定 / カスタム投稿）で canonical を出す
+  if (is_singular()) {
+    echo '<link rel="canonical" href="' . esc_url(get_permalink()) . '">' . "\n";
+    return;
+  }
+
+  // トップページにも canonical を出す（任意だが推奨）
+  if (is_front_page()) {
+    echo '<link rel="canonical" href="' . esc_url(home_url('/')) . '">' . "\n";
+  }
+}
+add_action('wp_head', 'cinema_canonical_tag', 5);
