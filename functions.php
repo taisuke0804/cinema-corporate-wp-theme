@@ -41,20 +41,77 @@ function cinema_corporate_register_service() {
 }
 add_action('init', 'cinema_corporate_register_service');
 
-// パンくずリスト関数
-function cinema_corporate_breadcrumb() {
-  echo '<nav class="breadcrumb">';
-  echo '<a href="' . home_url('/') . '">Home</a>';
+// パンくずデータを配列で返す
+function cinema_corporate_get_breadcrumb_items(): array {
+  $items = [];
 
-  // Service 一覧ページ
+  // 1. Home
+  $items[] = [
+    'name' => 'Home',
+    'url'  => home_url('/'),
+  ];
+
+  /**
+   * Service 一覧（アーカイブ）
+   * Home > Service
+   */
   if (is_post_type_archive('service')) {
-    echo ' &gt; Service';
+    $items[] = [
+      'name' => 'Service',
+      'url'  => '', // 現在地なのでリンク不要（表示側で判定）
+    ];
+
+    // 現状は Service のみ対応。対象外は Home のみ返す。
+    return $items;
   }
 
-  // Service 詳細ページ
+  /**
+   * Service 詳細（シングル）
+   * Home > Service（アーカイブリンク） > タイトル
+   */
   if (is_singular('service')) {
-    echo ' &gt; <a href="' . get_post_type_archive_link('service') . '">Service</a>';
-    echo ' &gt; ' . get_the_title();
+    $items[] = [
+      'name' => 'Service',
+      'url'  => get_post_type_archive_link('service'),
+    ];
+
+    $items[] = [
+      'name' => get_the_title(),
+      'url'  => '', // 現在地
+    ];
+
+    return $items;
+  }
+
+  return $items;
+}
+
+// パンくず表示（配列から描画）
+function cinema_corporate_breadcrumb(): void {
+  $items = cinema_corporate_get_breadcrumb_items();
+
+  // Home しかない場合
+  if (count($items) <= 1) {
+    return;
+  }
+
+  $last_index = count($items) - 1;
+
+  foreach ($items as $index => $item) {
+    $name = isset($item['name']) ? esc_html($item['name']) : '';
+    $url  = isset($item['url']) ? esc_url($item['url']) : '';
+
+    if ($index > 0) {
+      echo ' <span class="breadcrumb-separator" aria-hidden="true">&gt;</span> ';
+    }
+
+    // 最終要素 or URLなし はテキストのみ
+    if ($index === $last_index || empty($url)) {
+      echo '<span class="breadcrumb-current">' . $name . '</span>';
+      continue;
+    }
+
+    echo '<a class="breadcrumb-link" href="' . $url . '">' . $name . '</a>';
   }
 
   echo '</nav>';
