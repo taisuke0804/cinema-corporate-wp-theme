@@ -170,6 +170,27 @@ function cinema_corporate_get_breadcrumb_schema_json(): string {
   );
 }
 
+/**
+ * パンくずの構造化データ(JSON-LD)を head 内に出力する
+ */
+function cinema_corporate_output_breadcrumb_schema(): void {
+  // 現段階では Service 一覧 / Service 詳細のみ出力
+  if (!is_post_type_archive('service') && !is_singular('service')) {
+    return;
+  }
+
+  $schema_json = cinema_corporate_get_breadcrumb_schema_json();
+
+  if (empty($schema_json)) {
+    return;
+  }
+
+  echo '<script type="application/ld+json">' . "\n";
+  echo $schema_json . "\n";
+  echo '</script>' . "\n";
+}
+add_action('wp_head', 'cinema_corporate_output_breadcrumb_schema');
+
 // グローバルナビ
 function cinema_corporate_register_menus() {
   register_nav_menus([
