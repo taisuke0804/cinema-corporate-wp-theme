@@ -119,6 +119,57 @@ function cinema_corporate_breadcrumb(): void {
   echo '</nav>';
 }
 
+/**
+ * パンくず配列を BreadcrumbList 用の構造化データ配列に変換する
+ */
+function cinema_corporate_get_breadcrumb_schema_data(): array {
+  $items = cinema_corporate_get_breadcrumb_items();
+
+  // Homeしかない場合は構造化データを作らない
+  if (count($items) <= 1) {
+    return [];
+  }
+
+  $item_list_elements = [];
+
+  foreach ($items as $index => $item) {
+    $list_item = [
+      '@type'    => 'ListItem',
+      'position' => $index + 1,
+      'name'     => $item['name'],
+    ];
+
+    // URLがある場合のみ item を付与
+    if (!empty($item['url'])) {
+      $list_item['item'] = $item['url'];
+    }
+
+    $item_list_elements[] = $list_item;
+  }
+
+  return [
+    '@context'        => 'https://schema.org',
+    '@type'           => 'BreadcrumbList',
+    'itemListElement' => $item_list_elements,
+  ];
+}
+
+/**
+ * パンくずの構造化データを JSON-LD 文字列で返す
+ */
+function cinema_corporate_get_breadcrumb_schema_json(): string {
+  $schema_data = cinema_corporate_get_breadcrumb_schema_data();
+
+  if (empty($schema_data)) {
+    return '';
+  }
+
+  return wp_json_encode(
+    $schema_data,
+    JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT
+  );
+}
+
 // グローバルナビ
 function cinema_corporate_register_menus() {
   register_nav_menus([
