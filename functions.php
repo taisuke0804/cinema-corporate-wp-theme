@@ -96,26 +96,32 @@ function cinema_corporate_breadcrumb(): void {
   }
 
   echo '<nav class="breadcrumb" aria-label="breadcrumb">';
+  echo '<ol class="breadcrumb-list">';
 
   $last_index = count($items) - 1;
 
   foreach ($items as $index => $item) {
     $name = isset($item['name']) ? esc_html($item['name']) : '';
     $url  = isset($item['url']) ? esc_url($item['url']) : '';
+    $is_current = ($index === $last_index || empty($url));
 
-    if ($index > 0) {
-      echo ' <span class="breadcrumb-separator" aria-hidden="true">&gt;</span> ';
+    $item_class = 'breadcrumb-item';
+    if ($is_current) {
+      $item_class .= ' is-current';
     }
 
-    // 最終要素 or URLなし はテキストのみ
-    if ($index === $last_index || empty($url)) {
-      echo '<span class="breadcrumb-current">' . $name . '</span>';
-      continue;
+    echo '<li class="' . esc_attr($item_class) . '">';
+
+    if ($is_current) {
+      echo '<span class="breadcrumb-current" aria-current="page">' . $name . '</span>';
+    } else {
+      echo '<a class="breadcrumb-link" href="' . $url . '">' . $name . '</a>';
     }
 
-    echo '<a class="breadcrumb-link" href="' . $url . '">' . $name . '</a>';
+    echo '</li>';
   }
 
+  echo '</ol>';
   echo '</nav>';
 }
 
