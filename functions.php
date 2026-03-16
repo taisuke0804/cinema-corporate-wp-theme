@@ -95,6 +95,8 @@ function cinema_corporate_breadcrumb(): void {
     return;
   }
 
+  echo '<nav class="breadcrumb" aria-label="breadcrumb">';
+
   $last_index = count($items) - 1;
 
   foreach ($items as $index => $item) {
