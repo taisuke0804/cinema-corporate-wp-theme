@@ -95,40 +95,63 @@ Version: 1.0
 }
 
 /* =========================
-   Global Navigation
+   Site Header
 ========================= */
 
 .site-header {
-  border-bottom: 1px solid #ddd;
+  background-color: #fafafa;
+  border-bottom: 1px solid #e5e5e5;
 }
 
 .header-inner {
   max-width: 1100px;
   margin: 0 auto;
-  padding: 16px 24px;
+  padding: 20px 24px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
+/* =========================
+   Site Branding
+========================= */
+
+.site-branding {
+  display: flex;
+  align-items: center;
+}
+
+.site-title {
+  margin: 0;
+}
+
 .site-title a {
   font-size: 24px;
-  font-weight: bold;
-  color: #000;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: 0.02em;
+  color: #111;
   text-decoration: none;
 }
 
+/* =========================
+   Global Navigation
+========================= */
+
 .global-nav-list {
   display: flex;
-  gap: 24px;
+  gap: 8px;
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
 .global-nav-list a {
+  display: inline-block;
+  padding: 8px 12px;
   color: #333;
   text-decoration: none;
+  line-height: 1.2;
 }
 
 .global-nav-list a:hover {
@@ -136,24 +159,16 @@ Version: 1.0
 }
 
 .global-nav-list .current-menu-item > a {
-  border-bottom: 2px solid #e60012;
-  padding-bottom: 4px;
+  padding-bottom: 3px;
 }
 
 .global-nav-list .current-menu-item > a,
 .global-nav-list .current-menu-parent > a {
   color: #e60012;
-  font-weight: bold;
+  font-weight: 700;
+  border-bottom: 2px solid #e60012;
 }
-
-.global-nav-list a:hover {
-  color: #e60012;
-}
-
-.global-nav-list a:focus-visible {
-  outline: 2px solid #e60012;
-  outline-offset: 3px;
-}
+/* ------------------------------------ */
 
 .contact-page .wpcf7-form {
   max-width: 600px;
@@ -358,9 +373,38 @@ Version: 1.0
 }
 
 
-
-/* 画面幅が狭い場合は縦積み */
+/* =========================
+   レスポンシブ対応
+   画面幅が狭い場合は縦積み
+========================= */
 @media (max-width: 768px) {
+
+  /* Header */
+  .header-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 16px;
+  }
+
+  .global-nav {
+    width: 100%;
+  }
+
+  .global-nav-list {
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+
+  .global-nav-list a {
+    padding: 6px 10px;
+  }
+
+  .site-title a {
+    font-size: 22px;
+  }
+  /* ---------------------------------- */
+
   .site-footer {
     padding: 40px 16px 20px;
   }
