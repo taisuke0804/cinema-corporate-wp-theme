@@ -13,11 +13,14 @@
 
 <header class="site-header">
   <div class="header-inner">
-    <p class="site-title">
-      <a href="<?php echo esc_url(home_url('/')); ?>" aria-label="ホームへ">
-        <?php bloginfo('name'); ?>
-      </a>
-    </p>
+
+    <div class="site-branding">
+      <p class="site-title">
+        <a href="<?php echo esc_url(home_url('/')); ?>" aria-label="ホームへ">
+          <?php bloginfo('name'); ?>
+        </a>
+      </p>
+    </div>
 
     <nav class="global-nav" aria-label="グローバルナビゲーション">
       <?php
