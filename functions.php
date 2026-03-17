@@ -41,24 +41,161 @@ function cinema_corporate_register_service() {
 }
 add_action('init', 'cinema_corporate_register_service');
 
-// パンくずリスト関数
-function cinema_corporate_breadcrumb() {
-  echo '<nav class="breadcrumb">';
-  echo '<a href="' . home_url('/') . '">Home</a>';
+// パンくずデータを配列で返す
+function cinema_corporate_get_breadcrumb_items(): array {
+  $items = [];
 
-  // Service 一覧ページ
+  // 1. Home
+  $items[] = [
+    'name' => 'Home',
+    'url'  => home_url('/'),
+  ];
+
+  /**
+   * Service 一覧（アーカイブ）
+   * Home > Service
+   */
   if (is_post_type_archive('service')) {
-    echo ' &gt; Service';
+    $items[] = [
+      'name' => 'Service',
+      'url'  => '', // 現在地なのでリンク不要（表示側で判定）
+    ];
+
+    // 現状は Service のみ対応。対象外は Home のみ返す。
+    return $items;
   }
 
-  // Service 詳細ページ
+  /**
+   * Service 詳細（シングル）
+   * Home > Service（アーカイブリンク） > タイトル
+   */
   if (is_singular('service')) {
-    echo ' &gt; <a href="' . get_post_type_archive_link('service') . '">Service</a>';
-    echo ' &gt; ' . get_the_title();
+    $items[] = [
+      'name' => 'Service',
+      'url'  => get_post_type_archive_link('service'),
+    ];
+
+    $items[] = [
+      'name' => get_the_title(),
+      'url'  => '', // 現在地
+    ];
+
+    return $items;
   }
 
+  return $items;
+}
+
+// パンくず表示（配列から描画）
+function cinema_corporate_breadcrumb(): void {
+  $items = cinema_corporate_get_breadcrumb_items();
+
+  // Home しかない場合
+  if (count($items) <= 1) {
+    return;
+  }
+
+  echo '<nav class="breadcrumb" aria-label="breadcrumb">';
+  echo '<ol class="breadcrumb-list">';
+
+  $last_index = count($items) - 1;
+
+  foreach ($items as $index => $item) {
+    $name = isset($item['name']) ? esc_html($item['name']) : '';
+    $url  = isset($item['url']) ? esc_url($item['url']) : '';
+    $is_current = ($index === $last_index || empty($url));
+
+    $item_class = 'breadcrumb-item';
+    if ($is_current) {
+      $item_class .= ' is-current';
+    }
+
+    echo '<li class="' . esc_attr($item_class) . '">';
+
+    if ($is_current) {
+      echo '<span class="breadcrumb-current" aria-current="page">' . $name . '</span>';
+    } else {
+      echo '<a class="breadcrumb-link" href="' . $url . '">' . $name . '</a>';
+    }
+
+    echo '</li>';
+  }
+
+  echo '</ol>';
   echo '</nav>';
 }
+
+/**
+ * パンくず配列を BreadcrumbList 用の構造化データ配列に変換する
+ */
+function cinema_corporate_get_breadcrumb_schema_data(): array {
+  $items = cinema_corporate_get_breadcrumb_items();
+
+  // Homeしかない場合は構造化データを作らない
+  if (count($items) <= 1) {
+    return [];
+  }
+
+  $item_list_elements = [];
+
+  foreach ($items as $index => $item) {
+    $list_item = [
+      '@type'    => 'ListItem',
+      'position' => $index + 1,
+      'name'     => $item['name'],
+    ];
+
+    // URLがある場合のみ item を付与
+    if (!empty($item['url'])) {
+      $list_item['item'] = $item['url'];
+    }
+
+    $item_list_elements[] = $list_item;
+  }
+
+  return [
+    '@context'        => 'https://schema.org',
+    '@type'           => 'BreadcrumbList',
+    'itemListElement' => $item_list_elements,
+  ];
+}
+
+/**
+ * パンくずの構造化データを JSON-LD 文字列で返す
+ */
+function cinema_corporate_get_breadcrumb_schema_json(): string {
+  $schema_data = cinema_corporate_get_breadcrumb_schema_data();
+
+  if (empty($schema_data)) {
+    return '';
+  }
+
+  return wp_json_encode(
+    $schema_data,
+    JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT
+  );
+}
+
+/**
+ * パンくずの構造化データ(JSON-LD)を head 内に出力する
+ */
+function cinema_corporate_output_breadcrumb_schema(): void {
+  // 現段階では Service 一覧 / Service 詳細のみ出力
+  if (!is_post_type_archive('service') && !is_singular('service')) {
+    return;
+  }
+
+  $schema_json = cinema_corporate_get_breadcrumb_schema_json();
+
+  if (empty($schema_json)) {
+    return;
+  }
+
+  echo '<script type="application/ld+json">' . "\n";
+  echo $schema_json . "\n";
+  echo '</script>' . "\n";
+}
+add_action('wp_head', 'cinema_corporate_output_breadcrumb_schema');
 
 // グローバルナビ
 function cinema_corporate_register_menus() {
