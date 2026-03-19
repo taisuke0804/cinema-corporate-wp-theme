@@ -231,11 +231,11 @@ Version: 1.0
   margin: 0 auto;
 }
 
-/* 3カラム（SPは縦積み） */
+/* SPは縦積み */
 .footer-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 28px;
+  grid-template-columns: 1.2fr 1fr 1fr;
+  gap: 40px;
 }
 
 /* 各ブロック */
@@ -243,19 +243,16 @@ Version: 1.0
   min-width: 0;
 }
 
-/* ウィジェットのタイトル（register_sidebar の before_title/after_title に合わせる） */
-.footer-title {
-  margin: 0 0 12px;
-  font-size: 14px;
-  font-weight: bold;
-  opacity: 0.9;
+.site-footer p {
+  margin: 0 0 10px;
+  line-height: 1.8;
+  opacity: 0.85;
 }
 
 /* 会社情報などのテキスト */
-.footer-note,
 .site-footer p {
   margin: 0 0 10px;
-  line-height: 1.7;
+  line-height: 1.9;
   opacity: 0.85;
 }
 
@@ -285,17 +282,27 @@ Version: 1.0
 
 /* コピーライト帯 */
 .footer-bottom {
-  border-top: 1px solid rgba(255, 255, 255, 0.12);
-  margin-top: 28px;
+  margin-top: 32px;
   padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
   text-align: center;
-  opacity: 0.8;
 }
 
 .footer-copyright {
   margin: 0;
   font-size: 13px;
+  opacity: 0.8;
 }
+
+.footer-widget h2,
+.footer-widget h3 {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  letter-spacing: 0.05em;
+}
+
+/* ------------------------------------ */
 
 .screen-reader-text {
   position: absolute;
