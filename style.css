@@ -152,6 +152,29 @@ main {
   color: #e60012;
 }
 
+.service-more {
+  margin-top: 32px;
+  text-align: center;
+}
+
+.service-more-link {
+  display: inline-block;
+  padding: 12px 24px;
+  border: 1px solid #111;
+  border-radius: 9999px;
+  color: #111;
+  text-decoration: none;
+  font-weight: 700;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.service-more-link:hover {
+  background-color: #111;
+  color: #fff;
+}
+
+/* ------------------------------------ */
+
 .service-single {
   padding: 80px 24px;
   max-width: 800px;
