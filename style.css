@@ -6,6 +6,134 @@ Description: CINEMA-HOUSEの世界観を踏襲した中小企業向けコーポ�
 Version: 1.0
 */
 
+/* =========================
+   Base Layout
+========================= */
+body {
+  margin: 0;
+  color: #111;
+  background: #f7f7f7;
+  line-height: 1.8;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+main {
+  display: block;
+}
+
+.front-page {
+  padding: 0 24px 80px;
+}
+
+.front-page section {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.front-page h1,
+.front-page h2,
+.front-page h3,
+.front-page p {
+  margin-top: 0;
+}
+
+.front-page h2 {
+  font-size: 40px;
+  line-height: 1.2;
+  margin-bottom: 24px;
+}
+
+.front-page p {
+  font-size: 16px;
+}
+
+/* =========================
+   Front Page Hero
+========================= */
+.hero {
+  padding: 96px 0 88px;
+}
+
+.hero h1 {
+  font-size: clamp(40px, 6vw, 72px);
+  line-height: 1.1;
+  margin-bottom: 24px;
+  letter-spacing: 0.02em;
+}
+
+.hero p {
+  max-width: 720px;
+  font-size: 20px;
+  color: #333;
+}
+
+/* =========================
+   Front Page About
+========================= */
+.about {
+  padding: 72px 0;
+  border-top: 1px solid #e5e5e5;
+}
+
+.about p {
+  max-width: 760px;
+  font-size: 18px;
+  color: #333;
+}
+
+/* =========================
+   Front Page Service
+========================= */
+.service {
+  padding: 72px 0 0;
+  border-top: 1px solid #e5e5e5;
+}
+
+.service-list {
+  margin: 0;
+}
+
+.service-item {
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 32px;
+  background: #fff;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.service-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.service-item h3 {
+  margin-bottom: 16px;
+  font-size: 24px;
+  line-height: 1.4;
+}
+
+.service-item h3 a {
+  color: #111;
+  text-decoration: none;
+}
+
+.service-item h3 a:hover {
+  color: #e60012;
+}
+
+.service-content {
+  color: #444;
+  overflow-wrap: break-word;
+}
+
+.service-content p:last-child {
+  margin-bottom: 0;
+}
+
 .service-list {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -25,26 +153,85 @@ Version: 1.0
   color: #e60012;
 }
 
-.service-single {
-  padding: 80px 24px;
-  max-width: 800px;
-  margin: 0 auto;
+.service-more {
+  margin-top: 32px;
+  text-align: center;
 }
 
-.service-detail h1 {
-  color: #e60012;
-  margin-bottom: 24px;
+.service-more-link {
+  display: inline-block;
+  padding: 12px 24px;
+  border: 1px solid #111;
+  border-radius: 9999px;
+  color: #111;
+  text-decoration: none;
+  font-weight: 700;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
+.service-more-link:hover {
+  background-color: #111;
+  color: #fff;
+}
+
+/* =========================
+   Service Archive
+========================= */
 .service-archive {
-  padding: 80px 24px;
-  max-width: 960px;
+  max-width: 1100px;
   margin: 0 auto;
+  padding: 0 24px 80px;
+}
+
+.archive-header {
+  margin-bottom: 40px;
+}
+
+.archive-header h1 {
+  margin-bottom: 16px;
+  font-size: clamp(36px, 5vw, 56px);
+  line-height: 1.2;
+}
+
+.archive-header p {
+  margin: 0;
+  font-size: 18px;
+  color: #333;
 }
 
 .service-archive-list {
-  list-style: none;
+  margin: 0;
   padding: 0;
+}
+
+.archive-pagination {
+  margin-top: 40px;
+  text-align: center;
+}
+
+.archive-pagination .page-numbers {
+  display: inline-block;
+  margin: 0 4px;
+  padding: 10px 14px;
+  border: 1px solid #ccc;
+  border-radius: 9999px;
+  color: #111;
+  text-decoration: none;
+}
+
+.archive-pagination .page-numbers.current {
+  background: #111;
+  color: #fff;
+  border-color: #111;
+}
+
+.archive-pagination .page-numbers:hover {
+  background: #f2f2f2;
+}
+
+.service-empty-message {
+  font-size: 16px;
+  color: #555;
 }
 
 .service-archive-item {
@@ -54,6 +241,58 @@ Version: 1.0
 .service-archive-item h2 a {
   color: #e60012;
   text-decoration: none;
+}
+
+/* =========================
+   Service Single
+========================= */
+
+.service-single {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 24px 80px;
+}
+
+.service-detail {
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.service-detail-header {
+  margin-bottom: 40px;
+}
+
+.service-detail-header h1 {
+  margin: 0;
+  font-size: clamp(36px, 5vw, 56px);
+  line-height: 1.2;
+  color: #e60012;
+}
+
+.service-detail-content {
+  font-size: 16px;
+  line-height: 1.9;
+  color: #333;
+  overflow-wrap: break-word;
+}
+
+.service-detail-content p {
+  margin: 0 0 24px;
+}
+
+.service-detail-content h2,
+.service-detail-content h3 {
+  margin: 48px 0 20px;
+  line-height: 1.4;
+}
+
+.service-detail-content ul,
+.service-detail-content ol {
+  margin: 0 0 24px 1.5em;
+}
+
+.service-detail-content li {
+  margin-bottom: 8px;
 }
 
 /* パンくずリスト */
@@ -402,6 +641,67 @@ Version: 1.0
 
   .site-title a {
     font-size: 22px;
+  }
+
+  /* FrontPage */
+  .front-page {
+    padding: 0 16px 56px;
+  }
+
+  .hero {
+    padding: 56px 0 48px;
+  }
+
+  .hero h1 {
+    margin-bottom: 16px;
+  }
+
+  .hero p {
+    font-size: 17px;
+  }
+
+  .about,
+  .service {
+    padding: 48px 0 0;
+  }
+
+  .front-page h2 {
+    font-size: 30px;
+    margin-bottom: 20px;
+  }
+
+  .about p {
+    font-size: 16px;
+  }
+
+  .service-item {
+    padding: 24px;
+  }
+
+  .service-item h3 {
+    font-size: 20px;
+    margin-bottom: 12px;
+  }
+
+  .service-archive {
+    padding: 0 16px 56px;
+  }
+
+  .archive-header {
+    margin-bottom: 32px;
+  }
+
+  .archive-header p {
+    font-size: 16px;
+  }
+
+  /* Service Single */
+  .service-single {
+    padding: 0 16px 56px;
+  }
+
+  .service-detail-header {
+    margin-bottom: 32px;
   }
 
   /* Footer */

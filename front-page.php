@@ -39,6 +39,16 @@
           </li>
         <?php endwhile; ?>
       </ul>
+
+      <div class="service-more">
+        <a
+          class="service-more-link"
+          href="<?php echo esc_url(get_post_type_archive_link('service')); ?>"
+        >
+          Service一覧を見る
+        </a>
+      </div>
+      
     <?php else : ?>
       <p>サービス情報は準備中です。</p>
     <?php endif; ?>
