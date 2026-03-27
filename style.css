@@ -127,6 +127,7 @@ main {
 
 .service-content {
   color: #444;
+  overflow-wrap: break-word;
 }
 
 .service-content p:last-child {
@@ -272,6 +273,7 @@ main {
   font-size: 16px;
   line-height: 1.9;
   color: #333;
+  overflow-wrap: break-word;
 }
 
 .service-detail-content p {
