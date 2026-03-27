@@ -8,10 +8,10 @@
 get_header();
 ?>
 
-<main id="primary" class="site-main contact-page">
-  <div class="container">
+<main id="primary" class="contact-page">
+  <div class="contact-page-container">
 
-    <header class="page-header">
+    <header class="page-header contact-page-header">
       <h1 class="page-title"><?php the_title(); ?></h1>
     </header>
 
