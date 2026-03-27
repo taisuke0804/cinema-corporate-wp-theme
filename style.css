@@ -173,7 +173,65 @@ main {
   color: #fff;
 }
 
-/* ------------------------------------ */
+/* =========================
+   Service Archive
+========================= */
+.service-archive {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 24px 80px;
+}
+
+.archive-header {
+  margin-bottom: 40px;
+}
+
+.archive-header h1 {
+  margin-bottom: 16px;
+  font-size: clamp(36px, 5vw, 56px);
+  line-height: 1.2;
+}
+
+.archive-header p {
+  margin: 0;
+  font-size: 18px;
+  color: #333;
+}
+
+.service-archive-list {
+  margin: 0;
+  padding: 0;
+}
+
+.archive-pagination {
+  margin-top: 40px;
+  text-align: center;
+}
+
+.archive-pagination .page-numbers {
+  display: inline-block;
+  margin: 0 4px;
+  padding: 10px 14px;
+  border: 1px solid #ccc;
+  border-radius: 9999px;
+  color: #111;
+  text-decoration: none;
+}
+
+.archive-pagination .page-numbers.current {
+  background: #111;
+  color: #fff;
+  border-color: #111;
+}
+
+.archive-pagination .page-numbers:hover {
+  background: #f2f2f2;
+}
+
+.service-empty-message {
+  font-size: 16px;
+  color: #555;
+}
 
 .service-single {
   padding: 80px 24px;
@@ -184,17 +242,6 @@ main {
 .service-detail h1 {
   color: #e60012;
   margin-bottom: 24px;
-}
-
-.service-archive {
-  padding: 80px 24px;
-  max-width: 960px;
-  margin: 0 auto;
-}
-
-.service-archive-list {
-  list-style: none;
-  padding: 0;
 }
 
 .service-archive-item {
@@ -592,6 +639,18 @@ main {
   .service-item h3 {
     font-size: 20px;
     margin-bottom: 12px;
+  }
+
+  .service-archive {
+    padding: 0 16px 56px;
+  }
+
+  .archive-header {
+    margin-bottom: 32px;
+  }
+
+  .archive-header p {
+    font-size: 16px;
   }
 
   /* Footer */
