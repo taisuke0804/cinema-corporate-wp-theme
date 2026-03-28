@@ -4,6 +4,7 @@
   <div class="site-page-container">
 
     <header class="site-page-header">
+      <?php cinema_corporate_breadcrumb(); ?>
       <h1 class="site-page-title"><?php the_title(); ?></h1>
     </header>
 

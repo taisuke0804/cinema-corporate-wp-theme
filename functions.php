@@ -83,6 +83,16 @@ function cinema_corporate_get_breadcrumb_items(): array {
     return $items;
   }
 
+  // 固定ページ
+  if (is_page()) {
+    $items[] = [
+      'name' => get_the_title(),
+      'url'  => '',
+    ];
+
+    return $items;
+  }
+
   return $items;
 }
 
@@ -181,7 +191,7 @@ function cinema_corporate_get_breadcrumb_schema_json(): string {
  */
 function cinema_corporate_output_breadcrumb_schema(): void {
   // 現段階では Service 一覧 / Service 詳細のみ出力
-  if (!is_post_type_archive('service') && !is_singular('service')) {
+  if (!is_post_type_archive('service') && !is_singular('service') && !is_page()) {
     return;
   }
 
