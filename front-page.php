@@ -2,15 +2,18 @@
 
 <main class="front-page" id="main">
   <section class="hero">
-    <h1>Cinema-Corporate</h1>
-    <p>映像 × テクノロジーで価値を創造する</p>
+    <h1>
+      <?php echo esc_html(get_theme_mod('cinema_corporate_hero_title', 'Cinema-Corporate')); ?>
+    </h1>
+    <p>
+      <?php echo esc_html(get_theme_mod('cinema_corporate_hero_subtitle', '映像 × テクノロジーで価値を創造する')); ?>
+    </p>
   </section>
 
   <section class="about">
     <h2>About</h2>
     <p>
-      Cinema-Corporateは、中小企業向けに
-      映像とWeb技術を融合したソリューションを提供します。
+      <?php echo esc_html(get_theme_mod('cinema_corporate_about_text', 'Cinema-Corporateは、中小企業向けに映像とWeb技術を融合したソリューションを提供します。')); ?>
     </p>
   </section>
 
@@ -43,12 +46,11 @@
       <div class="service-more">
         <a
           class="service-more-link"
-          href="<?php echo esc_url(get_post_type_archive_link('service')); ?>"
-        >
+          href="<?php echo esc_url(get_post_type_archive_link('service')); ?>">
           Service一覧を見る
         </a>
       </div>
-      
+
     <?php else : ?>
       <p>サービス情報は準備中です。</p>
     <?php endif; ?>
