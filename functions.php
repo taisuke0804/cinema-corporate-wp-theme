@@ -394,5 +394,24 @@ function cinema_corporate_customize_register( $wp_customize ) {
       'type'    => 'text',
     )
   );
+
+  $wp_customize->add_setting(
+    'cinema_corporate_hero_image',
+    array(
+      'default'           => '',
+      'sanitize_callback' => 'esc_url_raw',
+    )
+  );
+
+  $wp_customize->add_control(
+    new WP_Customize_Image_Control(
+      $wp_customize,
+      'cinema_corporate_hero_image',
+      array(
+        'label'   => 'ヒーロー画像',
+        'section' => 'cinema_corporate_theme_options',
+      )
+    )
+  );
 }
 add_action( 'customize_register', 'cinema_corporate_customize_register' );

@@ -1,7 +1,11 @@
 <?php get_header(); ?>
 
 <main class="front-page" id="main">
-  <section class="hero">
+  <?php
+  $hero_image = get_theme_mod('cinema_corporate_hero_image');
+  ?>
+  <section class="hero"
+    style="background-image: url('<?php echo esc_url($hero_image ?: get_template_directory_uri() . '/assets/images/default.jpg'); ?>');">
     <h1>
       <?php echo esc_html(get_theme_mod('cinema_corporate_hero_title', 'Cinema-Corporate')); ?>
     </h1>
