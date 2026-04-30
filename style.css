@@ -56,6 +56,9 @@ main {
 ========================= */
 .hero {
   padding: 96px 0 88px;
+  position: relative;
+  background-size: cover;
+  background-position: center;
 }
 
 .hero h1 {
@@ -69,6 +72,20 @@ main {
   max-width: 720px;
   font-size: 20px;
   color: #333;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.35);
+}
+
+.hero h1,
+.hero p {
+  position: relative;
+  z-index: 1;
+  color: #111;
 }
 
 /* =========================

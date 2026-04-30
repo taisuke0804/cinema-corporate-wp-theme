@@ -24,7 +24,9 @@
 
     <div class="footer-bottom">
       <p class="footer-copyright">
-        &copy; <?php echo esc_html(date('Y')); ?> <?php echo esc_html(get_bloginfo('name')); ?>
+        &copy; <?php echo esc_html(date('Y')); ?>
+        <?php echo esc_html(get_bloginfo('name')); ?>
+        <?php echo esc_html(get_theme_mod('cinema_corporate_footer_copyright', 'All Rights Reserved.')); ?>
       </p>
     </div>
   </div>
@@ -32,4 +34,5 @@
 
 <?php wp_footer(); ?>
 </body>
+
 </html>

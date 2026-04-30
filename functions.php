@@ -314,3 +314,104 @@ function cinema_noindex_control() {
   }
 }
 add_action('wp_head', 'cinema_noindex_control', 5);
+
+/**
+ * テーマカスタマイザーの設定
+ */
+function cinema_corporate_customize_register( $wp_customize ) {
+  $wp_customize->add_section(
+    'cinema_corporate_theme_options',
+    array(
+      'title'    => 'テーマ設定',
+      'priority' => 30,
+    )
+  );
+
+  $wp_customize->add_setting(
+    'cinema_corporate_hero_title',
+    array(
+      'default'           => 'Cinema-Corporate',
+      'sanitize_callback' => 'sanitize_text_field',
+    )
+  );
+
+  $wp_customize->add_control(
+    'cinema_corporate_hero_title',
+    array(
+      'label'   => 'ヒーロータイトル',
+      'section' => 'cinema_corporate_theme_options',
+      'type'    => 'text',
+    )
+  );
+
+  $wp_customize->add_setting(
+    'cinema_corporate_hero_subtitle',
+    array(
+      'default'           => '映像 × テクノロジーで価値を創造する',
+      'sanitize_callback' => 'sanitize_text_field',
+    )
+  );
+
+  $wp_customize->add_control(
+    'cinema_corporate_hero_subtitle',
+    array(
+      'label'   => 'ヒーローサブタイトル',
+      'section' => 'cinema_corporate_theme_options',
+      'type'    => 'text',
+    )
+  );
+
+  $wp_customize->add_setting(
+    'cinema_corporate_about_text',
+    array(
+      'default'           => 'Cinema-Corporateは、中小企業向けに映像とWeb技術を融合したソリューションを提供します。',
+      'sanitize_callback' => 'sanitize_textarea_field',
+    )
+  );
+
+  $wp_customize->add_control(
+    'cinema_corporate_about_text',
+    array(
+      'label'   => 'About本文',
+      'section' => 'cinema_corporate_theme_options',
+      'type'    => 'textarea',
+    )
+  );
+
+  $wp_customize->add_setting(
+    'cinema_corporate_footer_copyright',
+    array(
+      'default'           => 'All Rights Reserved.',
+      'sanitize_callback' => 'sanitize_text_field',
+    )
+  );
+
+  $wp_customize->add_control(
+    'cinema_corporate_footer_copyright',
+    array(
+      'label'   => 'フッターコピーライト',
+      'section' => 'cinema_corporate_theme_options',
+      'type'    => 'text',
+    )
+  );
+
+  $wp_customize->add_setting(
+    'cinema_corporate_hero_image',
+    array(
+      'default'           => '',
+      'sanitize_callback' => 'esc_url_raw',
+    )
+  );
+
+  $wp_customize->add_control(
+    new WP_Customize_Image_Control(
+      $wp_customize,
+      'cinema_corporate_hero_image',
+      array(
+        'label'   => 'ヒーロー画像',
+        'section' => 'cinema_corporate_theme_options',
+      )
+    )
+  );
+}
+add_action( 'customize_register', 'cinema_corporate_customize_register' );
